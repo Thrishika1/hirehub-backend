@@ -11,9 +11,12 @@ import lombok.Setter;
 @Setter
 public class Resume extends BaseEntity {
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "candidate_id", nullable = false, unique = true)
     private CandidateProfile candidate;
+
+    @Column(nullable = false)
+    private boolean current = true;
 
     @Column(nullable = false, length = 255)
     private String fileName;
