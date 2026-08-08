@@ -1,5 +1,6 @@
-package com.hirehub.common.entity;
+package com.hirehub.company.entity;
 
+import com.hirehub.common.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Table(name = "companies")
 @Getter
 @Setter
-public class Company extends BaseEntity{
+public class Company extends BaseEntity {
 
     @Column(nullable = false, unique = true, length = 200)
     private String name;

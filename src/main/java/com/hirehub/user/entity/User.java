@@ -1,5 +1,6 @@
-package com.hirehub.common.entity;
+package com.hirehub.user.entity;
 
+import com.hirehub.common.entity.BaseEntity;
 import com.hirehub.common.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Table(name = "users")
 @Getter
 @Setter
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Column(nullable=false, unique=true, length=255)
     private String email;

@@ -1,5 +1,7 @@
-package com.hirehub.common.entity;
+package com.hirehub.user.entity;
 
+import com.hirehub.common.entity.BaseEntity;
+import com.hirehub.company.entity.Company;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +10,7 @@ import lombok.Setter;
 @Table(name = "recruiter_profiles")
 @Getter
 @Setter
-public class RecruiterProfile extends BaseEntity{
+public class RecruiterProfile extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(
