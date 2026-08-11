@@ -22,7 +22,7 @@ public class RecruiterProfile extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(
-        name = "company-id",
+        name = "company_id",
         nullable = false
     )
     private Company company;

@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Resume extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "candidate_id", nullable = false, unique = true)
+    @JoinColumn(name = "candidate_id", nullable = false)
     private CandidateProfile candidate;
 
     @Column(nullable = false)

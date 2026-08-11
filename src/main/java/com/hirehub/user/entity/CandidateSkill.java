@@ -33,5 +33,5 @@ public class CandidateSkill extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private ProficiencyLevel profiency;
+    private ProficiencyLevel proficiency;
 }
