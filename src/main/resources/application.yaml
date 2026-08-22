@@ -22,3 +22,8 @@ spring:
         format_sql: true
 server:
   port: 8080
+
+app:
+  storage:
+    upload-dir: uploads
+    max-file-size: 5MB
