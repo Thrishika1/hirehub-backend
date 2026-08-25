@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/jobs/{jobId}/applications")
 @RequiredArgsConstructor
@@ -30,4 +32,11 @@ public class ApplicationController {
                 .body(response);
     }
 
+    @GetMapping
+    public ResponseEntity<List<ApplicationResponse>> getJobApplications(@PathVariable Long jobId){
+
+        List<ApplicationResponse> applications = applicationService.getJobApplications(jobId);
+
+        return ResponseEntity.ok(applications);
+    }
 }

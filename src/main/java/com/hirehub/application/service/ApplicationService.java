@@ -127,6 +127,29 @@ public class ApplicationService {
         return response;
     }
 
+    public List<ApplicationResponse> getJobApplications(Long jobId){
+
+        // Check whether the job exists
+        jobRepository.findById(jobId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Job not found with id: " + jobId
+                        )
+                );
+
+        //Get all applications for this job
+        List<Application> applications = applicationRepository.findByJobId(jobId);
+
+        //convert to ApplicationResponse
+        List<ApplicationResponse> applicationResponses = new ArrayList<>();
+
+        for(Application a : applications){
+            applicationResponses.add(mapToResponse(a));
+        }
+
+        return applicationResponses;
+    }
+
     private ApplicationResponse mapToResponse(Application application) {
         return new ApplicationResponse(
                 application.getId(),
