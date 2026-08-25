@@ -8,10 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/jobs")
@@ -27,5 +24,21 @@ public class JobController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(response);
+    }
+
+    @PatchMapping("{jobId}/open")
+    public ResponseEntity<JobResponse> openJob(@PathVariable Long jobId){
+
+        JobResponse response = jobService.openJob(jobId);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("{jobId}/close")
+    public ResponseEntity<JobResponse> closeJob(@PathVariable Long jobId){
+
+        JobResponse response = jobService.closeJob(jobId);
+
+        return ResponseEntity.ok(response);
     }
 }

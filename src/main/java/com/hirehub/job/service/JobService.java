@@ -1,5 +1,6 @@
 package com.hirehub.job.service;
 
+import com.hirehub.common.enums.JobStatus;
 import com.hirehub.common.exception.ResourceNotFoundException;
 import com.hirehub.job.dto.CreateJobRequest;
 import com.hirehub.job.dto.JobResponse;
@@ -90,6 +91,49 @@ public class JobService {
         // 6. Convert Entity -> Response DTO
         return mapToResponse(savedJob);
     }
+
+    public JobResponse openJob(Long jobId){
+
+        //check if job exists
+        Job job = jobRepository.findById(jobId).
+            orElseThrow(()->
+                new ResourceNotFoundException("Job not found with id: "+jobId)
+        );
+
+        //check if is already open
+        if(job.getStatus() == JobStatus.OPEN){
+            throw new IllegalStateException("Job is already open");
+        }
+
+        //change status
+        job.setStatus(JobStatus.OPEN);
+
+        Job updatedJob = jobRepository.save(job);
+
+        return mapToResponse(updatedJob);
+    }
+
+    public JobResponse closeJob(Long jobId){
+
+        //check if job exists
+        Job job = jobRepository.findById(jobId).
+                orElseThrow(()->
+                        new ResourceNotFoundException("Job not found with id: "+jobId)
+                );
+
+        //check if is already closed
+        if(job.getStatus() == JobStatus.CLOSED){
+            throw new IllegalStateException("Job is already closed");
+        }
+
+        //change status to closed
+        job.setStatus(JobStatus.CLOSED);
+
+        Job updatedJob = jobRepository.save(job);
+
+        return mapToResponse(updatedJob);
+    }
+
     private JobResponse mapToResponse(Job job) {
 
         return new JobResponse(
